@@ -139,6 +139,17 @@ class Window:
         
         self.active_object_count = active_count
   
+  def draw_ui(self):
+        imgui.new_frame()
+
+        imgui.begin("Controls")
+        
+        imgui.text(f"Active Objects: {self.active_object_count}")  # Display active object count
+        
+        imgui.end()
+
+        imgui.render()
+        self.impl.render(imgui.get_draw_data()
   def initializeGL(self):
     """ initialize GL related stuff. """
 

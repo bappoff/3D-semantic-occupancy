@@ -122,7 +122,23 @@ class Window:
     self.currentTimestep = 0
     self.sliderValue = 0
     self.showLabels = True
-
+    
+    self.active_object_count = 0
+    
+  
+  def update_active_object_count(self):
+        subdir = self.subdirs[self.current_subdir]
+        data_name = self.current_data
+        
+        if data_name == "labels":
+            data = np.fromfile(self.data[subdir][data_name][self.currentTimestep], dtype=np.uint16)
+            active_count = np.count_nonzero(data)  # Count the number of non-zero elements
+        else:
+            data = np.fromfile(self.data[subdir][data_name][self.currentTimestep], dtype=np.uint8)
+            active_count = np.count_nonzero(data)  # Count the number of non-zero elements
+        
+        self.active_object_count = active_count
+  
   def initializeGL(self):
     """ initialize GL related stuff. """
 
@@ -310,7 +326,9 @@ class Window:
       buffer_data = unpack(np.fromfile(self.data[subdir][data_name][t], dtype=np.uint8)).astype(np.float32)
 
     self.label_vbo.assign(buffer_data)
-
+    self.label_vbo.assign(buffer_data)
+    self.update_active_object_count()  # Update active object count
+        
     return True
 
   def on_resize(self, window, w, h):

@@ -149,7 +149,7 @@ class Window:
         imgui.end()
 
         imgui.render()
-        self.impl.render(imgui.get_draw_data()
+        self.impl.render(imgui.get_draw_data())
                          
   def initializeGL(self):
     """ initialize GL related stuff. """

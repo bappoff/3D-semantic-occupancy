@@ -150,6 +150,7 @@ class Window:
 
         imgui.render()
         self.impl.render(imgui.get_draw_data()
+                         
   def initializeGL(self):
     """ initialize GL related stuff. """
 

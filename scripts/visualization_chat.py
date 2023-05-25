@@ -7,8 +7,8 @@ with open('/work/scitas-share/voxformer/VoxFormer/3D-semantic-occupancy/results/
     data = pickle.load(file)
 
 # Extract the arrays
-y_pred = data['y_pred']
-y_true = data['y_true']
+y_pred_list = [d['y_pred'] for d in data]
+y_true_list = [d['y_true'] for d in data]
 
 # Perform visualization using the extracted arrays
 # (Example visualization using matplotlib)

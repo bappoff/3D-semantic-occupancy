@@ -7,9 +7,6 @@
 #SBATCH --mem 100G
 #SBATCH --partition gpu
 #SBATCH --gres gpu:1
-#SBATCH --qos dlav
-#SBATCH --reservation civil-459
-#SBATCH --account civil-459-2023
 
 CONFIG=$1
 CHECKPOINT=$2

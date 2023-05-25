@@ -10,17 +10,14 @@ with open('/work/scitas-share/voxformer/VoxFormer/3D-semantic-occupancy/results/
 y_pred_list = [d['y_pred'] for d in data]
 y_true_list = [d['y_true'] for d in data]
 
-# Perform visualization using the extracted arrays
-# (Example visualization using matplotlib)
-fig, axes = plt.subplots(nrows=2, ncols=1)
+# Visualize the arrays
+fig, axes = plt.subplots(len(y_pred_list), 2, figsize=(10, 10))
 
-axes[0].imshow(np.squeeze(y_pred))
-axes[0].set_title('Predicted')
-axes[0].axis('off')
-
-axes[1].imshow(np.squeeze(y_true))
-axes[1].set_title('Ground Truth')
-axes[1].axis('off')
+for i, (y_pred, y_true) in enumerate(zip(y_pred_list, y_true_list)):
+    axes[i, 0].imshow(np.squeeze(y_pred))
+    axes[i, 0].set_title(f'Prediction {i+1}')
+    axes[i, 1].imshow(np.squeeze(y_true))
+    axes[i, 1].set_title(f'True {i+1}')
 
 plt.tight_layout()
 plt.show()

@@ -15,4 +15,4 @@ PORT=${PORT:-29503}
 
 PYTHONPATH="/home/bpoffet/miniconda3/envs/voxformer_venv/..":$PYTHONPATH \
 python -m torch.distributed.run --nproc_per_node=$GPUS --master_port=$PORT \
-    /work/scitas-share/voxformer/VoxFormer/3D-semantic-occupancy/scripts/eval.py $CONFIG $CHECKPOINT --launcher pytorch ${@:4} --format-only --out test_18-36.pkl
+    /work/scitas-share/voxformer/VoxFormer/3D-semantic-occupancy/scripts/eval.py $CONFIG $CHECKPOINT --launcher pytorch ${@:4} --format-only

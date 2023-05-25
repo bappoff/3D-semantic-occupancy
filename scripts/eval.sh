@@ -7,6 +7,9 @@
 #SBATCH --mem 100G
 #SBATCH --partition gpu
 #SBATCH --gres gpu:1
+#SBATCH --qos dlav
+#SBATCH --reservation civil-459
+#SBATCH --account civil-459-2023
 
 CONFIG=$1
 CHECKPOINT=$2
@@ -15,4 +18,4 @@ PORT=${PORT:-29503}
 
 PYTHONPATH="/home/bpoffet/miniconda3/envs/voxformer_venv/..":$PYTHONPATH \
 python -m torch.distributed.run --nproc_per_node=$GPUS --master_port=$PORT \
-    /work/scitas-share/voxformer/VoxFormer/3D-semantic-occupancy/scripts/eval.py $CONFIG $CHECKPOINT --launcher pytorch ${@:4} --eval bbox --show --out test2.pkl
+    /work/scitas-share/voxformer/VoxFormer/3D-semantic-occupancy/scripts/eval.py $CONFIG $CHECKPOINT --launcher pytorch ${@:4} --format-only
